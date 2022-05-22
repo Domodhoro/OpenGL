@@ -20,7 +20,7 @@ public:
     void draw(const glm::mat4&, const glm::mat4&) const;
 
 private:
-    unsigned int m_texture = 0u, m_VAO = 0u, m_count = 0u;
+    unsigned int m_texture = 0u, m_VAO = 0u;
 
     std::vector<glm::vec3> m_vertexCoords;
 	std::vector<glm::vec2> m_textureCoords;
