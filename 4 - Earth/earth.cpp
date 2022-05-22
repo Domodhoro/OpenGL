@@ -86,8 +86,6 @@ void Earth::mesh(const unsigned int rings, const unsigned int sectors)
 			m_indiceCoords.push_back(r * sectors + (s + 1u));
 			m_indiceCoords.push_back((r + 1u) * sectors + (s + 1u));
 			m_indiceCoords.push_back((r + 1u) * sectors + s);
-
-			++m_count;
 		}
 	}
 }
