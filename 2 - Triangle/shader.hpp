@@ -3,11 +3,11 @@
 
 #include <glm/glm.hpp>
 
-class Shader
-{
+class Shader {
+    unsigned int m_shader = 0u, m_vertex = 0u, m_fragment = 0u, compileVertex(const char*), compileFragment(const char*);
+    
 public:
     Shader(const char*, const char*);
-
     Shader(const Shader&) = delete;
     Shader& operator=(const Shader&) = delete;
 
@@ -16,12 +16,6 @@ public:
     unsigned int& use();
 
     void setUniformMatrix(const char*, const glm::mat4&) const;
-
-private:
-    unsigned int m_shader = 0u, m_vertex = 0u, m_fragment = 0u;
-
-    unsigned int compileVertex(const char*);
-    unsigned int compileFragment(const char*);
 };
 
 #endif
