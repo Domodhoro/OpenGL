@@ -6,20 +6,18 @@
 
 void keyboardCallback(GLFWwindow*);
 
-int main()
-{
-    try
-    {
-        if(glfwInit() == GLFW_NOT_INITIALIZED)
-        {
+int main() {
+    GLFWwindow* window = nullptr;
+    
+    try {
+        if (glfwInit() == GLFW_NOT_INITIALIZED) {
             throw std::runtime_error("Falha ao iniciar o GLFW.");
         }
 
         glfwWindowHint(GLFW_RESIZABLE, false);
 
-        GLFWwindow* window = glfwCreateWindow(500, 300, "Window", nullptr, nullptr);
-        if(window == nullptr)
-        {
+        window = glfwCreateWindow(500, 300, "Window", nullptr, nullptr);
+        if (window == nullptr) {
             throw std::runtime_error("Falha ao criar a janela de visualização.");
         }
 
@@ -27,20 +25,17 @@ int main()
         glfwSetWindowPos(window, 100, 100);
 
         glewExperimental = true;
-        if(glewInit() != GLEW_OK)
-        {
+        if (glewInit() != GLEW_OK) {
             throw std::runtime_error("Falha ao iniciar GLEW.");
         }
 
         const float FPS = 60.0f;
         float lastFrame = 0.0f, currentFrame = 0.0f;
 
-        while(!glfwWindowShouldClose(window))
-        {
+        while (!glfwWindowShouldClose(window)) {
             currentFrame = static_cast<float>(glfwGetTime());
 
-            if((currentFrame - lastFrame) > (1.0f / FPS))
-            {
+            if ((currentFrame - lastFrame) > (1.0f / FPS)) {
                 glClear(GL_COLOR_BUFFER_BIT);
                 glClearColor(0.5f, 0.5f, 1.0f, 1.0f);
                 glfwSwapBuffers(window);
@@ -52,11 +47,11 @@ int main()
             }
         }
 
+        glfwDestroyWindow(window);
         glfwTerminate();
         return 0;
-    }
-    catch(const std::exception& e)
-    {
+    } catch (const std::exception& e) {
+        glfwDestroyWindow(window);
         glfwTerminate();
 
         std::cerr << e.what();
@@ -65,10 +60,8 @@ int main()
     }
 }
 
-void keyboardCallback(GLFWwindow* window)
-{
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-    {
+void keyboardCallback(GLFWwindow* window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
     }
 }
