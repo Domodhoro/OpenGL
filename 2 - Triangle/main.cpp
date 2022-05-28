@@ -33,12 +33,11 @@ const char* fragmentSource =
 
 void keyboardCallback(GLFWwindow*);
 
-int main()
-{
-    try
-    {
-        if(glfwInit() == GLFW_NOT_INITIALIZED)
-        {
+int main() {
+    GLFWwindow* window = nullptr;
+    
+    try {
+        if (glfwInit() == GLFW_NOT_INITIALIZED) {
             throw std::runtime_error("Falha ao iniciar o GLFW.");
         }
 
@@ -46,9 +45,8 @@ int main()
 
         const int screenWidth = 500, screenHeight = 300;
 
-        GLFWwindow* window = glfwCreateWindow(screenWidth, screenHeight, "Triangle", nullptr, nullptr);
-        if(window ==  nullptr)
-        {
+        window = glfwCreateWindow(screenWidth, screenHeight, "Triangle", nullptr, nullptr);
+        if (window ==  nullptr) {
             throw std::runtime_error("Falha ao criar a janela de visualização.");
         }
 
@@ -56,8 +54,7 @@ int main()
         glfwSetWindowPos(window, 100, 100);
 
         glewExperimental = true;
-        if(glewInit() != GLEW_OK)
-        {
+        if (glewInit() != GLEW_OK) {
             throw std::runtime_error("Falha ao iniciar GLEW.");
         }
 
@@ -70,12 +67,10 @@ int main()
         const float FPS = 60.0f;
         float lastFrame = 0.0f, currentFrame = 0.0f;
 
-        while(!glfwWindowShouldClose(window))
-        {
+        while (!glfwWindowShouldClose(window)) {
             currentFrame = static_cast<float>(glfwGetTime());
 
-            if((currentFrame - lastFrame) > (1.0f / FPS))
-            {
+            if ((currentFrame - lastFrame) > (1.0f / FPS)) {
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -92,11 +87,11 @@ int main()
             }
         }
 
+        glfwDestroyWindow(window);
         glfwTerminate();
         return 0;
-    }
-    catch(const std::exception& e)
-    {
+    } catch (const std::exception& e) {
+        glfwDestroyWindow(window);
         glfwTerminate();
 
         std::cerr << e.what();
@@ -105,10 +100,8 @@ int main()
     }
 }
 
-void keyboardCallback(GLFWwindow* window)
-{
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-    {
+void keyboardCallback(GLFWwindow* window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
     }
 }
