@@ -6,9 +6,7 @@
 
 #include "triangle.hpp"
 
-Triangle::Triangle(const char* vertex, const char* fragment)
-    : m_shader(std::make_unique<Shader>(vertex, fragment))
-{
+Triangle::Triangle(const char* vertex, const char* fragment) : m_shader(std::make_unique<Shader>(vertex, fragment)) {
     mesh();
     setup();
 
@@ -16,13 +14,11 @@ Triangle::Triangle(const char* vertex, const char* fragment)
     m_colorCoords.clear();
 }
 
-Triangle::~Triangle()
-{
+Triangle::~Triangle() {
     glDeleteVertexArrays(1, &m_VAO);
 }
 
-void Triangle::draw(glm::mat4& projectionMatrix) const
-{
+void Triangle::draw(glm::mat4& projectionMatrix) const {
     glUseProgram(m_shader->use());
     glBindVertexArray(m_VAO);
 
@@ -36,8 +32,7 @@ void Triangle::draw(glm::mat4& projectionMatrix) const
     glDrawArrays(GL_TRIANGLES, 0, m_count);
 }
 
-void Triangle::setup()
-{
+void Triangle::setup() {
     glGenVertexArrays(1, &m_VAO);
     glBindVertexArray(m_VAO);
 
@@ -55,14 +50,12 @@ void Triangle::setup()
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, false, sizeof(glm::vec3), (void*)(0 * sizeof(float)));
 
-    if(!m_VAO)
-    {
+    if (!m_VAO) {
         throw std::runtime_error("Falha ao criar VAO.");
     }
 }
 
-void Triangle::mesh()
-{
+void Triangle::mesh() {
     m_vertexCoords.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
     m_vertexCoords.push_back(glm::vec3(0.5f, 1.0f, 0.0f));
     m_vertexCoords.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
