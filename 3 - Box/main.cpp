@@ -27,7 +27,7 @@ int main() {
 
         const int screenWidth = 500, screenHeight = 300;
 
-        GLFWwindow* window = glfwCreateWindow(screenWidth, screenHeight, "Box", nullptr, nullptr);
+        window = glfwCreateWindow(screenWidth, screenHeight, "Box", nullptr, nullptr);
         if (window == nullptr) {
             throw std::runtime_error("Falha ao criar a janela de visualização.");
         }
