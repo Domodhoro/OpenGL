@@ -9,7 +9,7 @@
 #include "box.hpp"
 
 Box::Box(const unsigned int& texture) : m_shader(std::make_unique<Shader>("boxVertex.glsl", "boxFragment.glsl")), m_texture(texture) {
-    m_count = mesh(m_vertexCoords, m_textureCoords);
+    m_count = mesh();
 
     glGenVertexArrays(1, &m_VAO);
     glBindVertexArray(m_VAO);
@@ -62,7 +62,7 @@ void Box::draw(glm::mat4& projectionMatrix, glm::mat4& viewMatrix) const {
     glBindVertexArray(0);
 }
 
-unsigned int Box::mesh(std::vector<glm::vec3>& m_vertexCoords, std::vector<glm::vec2>& m_textureCoords) {
+unsigned int Box::mesh() {
     m_vertexCoords.emplace_back(glm::vec3(0.0f, 0.0f, 0.0f));
     m_vertexCoords.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));
     m_vertexCoords.emplace_back(glm::vec3(1.0f, 1.0f, 0.0f));
