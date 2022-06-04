@@ -9,12 +9,14 @@
 #include "shader.hpp"
 
 class Box {
-    unsigned int m_texture = 0u, m_VAO = 0u, m_count = 0u, mesh(std::vector<glm::vec3>&, std::vector<glm::vec2>&);
+    unsigned int m_texture = 0u, m_VAO = 0u, m_count = 0u;
 
     std::vector<glm::vec3> m_vertexCoords;
     std::vector<glm::vec2> m_textureCoords;
 
     std::unique_ptr<Shader> m_shader;
+    
+    void mesh();
     
 public:
     Box(const unsigned int&);
