@@ -68,17 +68,17 @@ void Earth::mesh(const unsigned int rings, const unsigned int sectors) {
 
     for (int r = 0; r != rings; ++r) {
         for (int s = 0; s != sectors; ++s) {
-	    const float x = cos(2.0f * M_PI * s * S) * sin(M_PI * r * R);
-	    const float y = sin(-(M_PI / 2.0f) + M_PI * r * R);
-	    const float z = sin(2.0f * M_PI * s * S) * sin(M_PI * r * R);
+            const float x = cos(2.0f * M_PI * s * S) * sin(M_PI * r * R);
+            const float y = sin(-(M_PI / 2.0f) + M_PI * r * R);
+            const float z = sin(2.0f * M_PI * s * S) * sin(M_PI * r * R);
 
-	    m_vertexCoords.emplace_back(glm::vec3(x, y, z));
-	    m_textureCoords.emplace_back(glm::vec2(s * S, r * R));
+            m_vertexCoords.emplace_back(glm::vec3(x, y, z));
+            m_textureCoords.emplace_back(glm::vec2(s * S, r * R));
 
-	    m_indiceCoords.emplace_back(r * sectors + s);
-	    m_indiceCoords.emplace_back(r * sectors + (s + 1u));
-	    m_indiceCoords.emplace_back((r + 1u) * sectors + (s + 1u));
-	    m_indiceCoords.emplace_back((r + 1u) * sectors + s);
+            m_indiceCoords.emplace_back(r * sectors + s);
+            m_indiceCoords.emplace_back(r * sectors + (s + 1u));
+            m_indiceCoords.emplace_back((r + 1u) * sectors + (s + 1u));
+            m_indiceCoords.emplace_back((r + 1u) * sectors + s);
         }
     }
 }
