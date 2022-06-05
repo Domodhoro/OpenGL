@@ -34,7 +34,7 @@ Earth::Earth(const unsigned int& texture) : m_shader(std::make_unique<Shader>("e
     m_textureCoords.clear();
 
     if (!m_VAO) {
-	throw std::runtime_error("Falha ao criar VAO.");
+        throw std::runtime_error("Falha ao criar VAO.");
     }
 }
 
@@ -67,18 +67,18 @@ void Earth::mesh(const unsigned int rings, const unsigned int sectors) {
     const float R = 1.0f / (rings - 1.0f), S = 1.0f / (sectors - 1.0f);
 
     for (int r = 0; r != rings; ++r) {
-	for (int s = 0; s != sectors; ++s) {
+        for (int s = 0; s != sectors; ++s) {
 	    const float x = cos(2.0f * M_PI * s * S) * sin(M_PI * r * R);
 	    const float y = sin(-(M_PI / 2.0f) + M_PI * r * R);
 	    const float z = sin(2.0f * M_PI * s * S) * sin(M_PI * r * R);
 
-	    m_vertexCoords.push_back(glm::vec3(x, y, z));
-	    m_textureCoords.push_back(glm::vec2(s * S, r * R));
+	    m_vertexCoords.emplace_back(glm::vec3(x, y, z));
+	    m_textureCoords.emplace_back(glm::vec2(s * S, r * R));
 
-	    m_indiceCoords.push_back(r * sectors + s);
-	    m_indiceCoords.push_back(r * sectors + (s + 1u));
-	    m_indiceCoords.push_back((r + 1u) * sectors + (s + 1u));
-	    m_indiceCoords.push_back((r + 1u) * sectors + s);
-	}
+	    m_indiceCoords.emplace_back(r * sectors + s);
+	    m_indiceCoords.emplace_back(r * sectors + (s + 1u));
+	    m_indiceCoords.emplace_back((r + 1u) * sectors + (s + 1u));
+	    m_indiceCoords.emplace_back((r + 1u) * sectors + s);
+        }
     }
 }
