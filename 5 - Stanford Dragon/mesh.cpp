@@ -19,26 +19,26 @@ Mesh::Mesh(const char* meshPath) : file(fopen(meshPath, "r")) {
 
             fscanf(file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z);
 
-            m_tempVertex.push_back(vertex);
+            m_tempVertex.emplace_back(vertex);
         } else if (strcmp(line, "vn") == 0) {
             glm::vec3 normal = glm::vec3(0.0);
 
             fscanf(file, "%f %f %f\n", &normal.x, &normal.y, &normal.z);
 
-            m_tempNormal.push_back(normal);
+            m_tempNormal.emplace_back(normal);
         } else if (strcmp(line, "f") == 0) {
             unsigned int vertexIndex[3] = {0, 0, 0};
             unsigned int normalIndex[3] = {0, 0, 0};
 
             fscanf(file, "%d//%d %d//%d %d//%d\n", &vertexIndex[0], &normalIndex[0], &vertexIndex[1], &normalIndex[1], &vertexIndex[2], &normalIndex[2]);
 
-            m_vertexIndices.push_back(vertexIndex[2]);
-            m_vertexIndices.push_back(vertexIndex[1]);
-            m_vertexIndices.push_back(vertexIndex[0]);
+            m_vertexIndices.emplace_back(vertexIndex[2]);
+            m_vertexIndices.emplace_back(vertexIndex[1]);
+            m_vertexIndices.emplace_back(vertexIndex[0]);
 
-            m_normalIndices.push_back(normalIndex[2]);
-            m_normalIndices.push_back(normalIndex[1]);
-            m_normalIndices.push_back(normalIndex[0]);
+            m_normalIndices.emplace_back(normalIndex[2]);
+            m_normalIndices.emplace_back(normalIndex[1]);
+            m_normalIndices.emplace_back(normalIndex[0]);
         }
     }
 
@@ -69,8 +69,8 @@ void Mesh::build() {
         glm::vec3 vertex = m_tempVertex.at(m_vertexIndices.at(i) - 1);
         glm::vec3 normal = m_tempNormal.at(m_normalIndices.at(i) - 1);
 
-        m_vertexCoords.push_back(vertex);
-        m_normalCoords.push_back(normal);
+        m_vertexCoords.emplace_back(vertex);
+        m_normalCoords.emplace_back(normal);
 
         ++m_count;
     }
