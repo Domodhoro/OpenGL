@@ -13,7 +13,7 @@ public:
 
     void setPosition(const glm::vec3);
 
-	glm::mat4 getProjectionMatrix() const, getViewMatrix() const;
+    glm::mat4 getProjectionMatrix() const, getViewMatrix() const;
 };
 
 #endif
