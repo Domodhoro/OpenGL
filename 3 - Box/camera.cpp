@@ -9,9 +9,9 @@ void Camera::setPosition(const glm::vec3 position) {
 }
 
 glm::mat4 Camera::getProjectionMatrix() const {
-	return glm::perspective(glm::radians(m_fov), m_aspect, m_nearPlane, m_farPlane);
+    return glm::perspective(glm::radians(m_fov), m_aspect, m_nearPlane, m_farPlane);
 }
 
 glm::mat4 Camera::getViewMatrix() const {
-	return glm::lookAt(m_position, m_position + m_front, m_up);
+    return glm::lookAt(m_position, m_position + m_front, m_up);
 }
