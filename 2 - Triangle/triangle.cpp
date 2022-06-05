@@ -56,13 +56,13 @@ void Triangle::setup() {
 }
 
 void Triangle::mesh() {
-    m_vertexCoords.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
-    m_vertexCoords.push_back(glm::vec3(0.5f, 1.0f, 0.0f));
-    m_vertexCoords.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+    m_vertexCoords.emplace_back(glm::vec3(0.0f, 0.0f, 0.0f));
+    m_vertexCoords.emplace_back(glm::vec3(0.5f, 1.0f, 0.0f));
+    m_vertexCoords.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));
 
-    m_colorCoords.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-    m_colorCoords.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-    m_colorCoords.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+    m_colorCoords.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));
+    m_colorCoords.emplace_back(glm::vec3(0.0f, 1.0f, 0.0f));
+    m_colorCoords.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));
 
     m_count = 3;
 }
