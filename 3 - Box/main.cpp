@@ -64,7 +64,7 @@ int main() {
                 glm::mat4 projectionMatrix = camera->getProjectionMatrix();
                 glm::mat4 viewMatrix = camera->getViewMatrix();
 
-                box->draw(projectionMatrix, viewMatrix);
+                box->render(projectionMatrix, viewMatrix);
 
                 glfwSwapBuffers(window);
                 glfwPollEvents();
