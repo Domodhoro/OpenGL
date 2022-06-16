@@ -44,7 +44,7 @@ Mesh::Mesh(const char* meshPath) : file(fopen(meshPath, "r")) {
 
     fclose(file);
 
-    build();
+    setup();
 
     m_tempVertex.clear();
     m_tempNormal.clear();
@@ -64,7 +64,7 @@ unsigned int& Mesh::getCount() {
     return m_count;
 }
 
-void Mesh::build() {
+void Mesh::setup() {
     for( int i = 0; i != static_cast<int>(m_vertexIndices.size()); ++i) {
         glm::vec3 vertex = m_tempVertex.at(m_vertexIndices.at(i) - 1);
         glm::vec3 normal = m_tempNormal.at(m_normalIndices.at(i) - 1);
