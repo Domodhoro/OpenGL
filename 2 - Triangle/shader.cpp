@@ -15,6 +15,7 @@ Shader::Shader(const char* vertexSource, const char* fragmentSource) : m_vertex(
 
     int success = 0;
     glGetProgramiv(m_shader, GL_LINK_STATUS, &success);
+    
     if (!success) {
         char infoLog[512];
         glGetProgramInfoLog(m_shader, 512, nullptr, infoLog);
@@ -42,6 +43,7 @@ unsigned int Shader::compileVertex(const char* vertexPath) {
 
     int success = 0;
     glGetShaderiv(m_vertex, GL_COMPILE_STATUS, &success);
+    
     if (!success) {
         char infoLog[512];
         glGetShaderInfoLog(m_vertex, 512, nullptr, infoLog);
@@ -60,6 +62,7 @@ unsigned int Shader::compileFragment(const char* fragmentPath) {
 
     int success = 0;
     glGetShaderiv(m_fragment, GL_COMPILE_STATUS, &success);
+    
     if (!success) {
         char infoLog[512];
         glGetShaderInfoLog(m_fragment, 512, nullptr, infoLog);
