@@ -24,7 +24,7 @@ public:
 
     ~Triangle();
 
-    void draw(glm::mat4&) const;
+    void render(glm::mat4&) const;
 };
 
 #endif
