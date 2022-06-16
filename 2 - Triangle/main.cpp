@@ -76,7 +76,7 @@ int main() {
 
                 glm::mat4 projectionMatrix = glm::ortho(-1.0f * aspect, 1.0f * aspect, -1.0f, 1.0f, -1.0f, 1.0f);
 
-                triangle->draw(projectionMatrix);
+                triangle->render(projectionMatrix);
 
                 glfwSwapBuffers(window);
                 glfwPollEvents();
