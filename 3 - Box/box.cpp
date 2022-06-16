@@ -9,7 +9,7 @@
 #include "box.hpp"
 
 Box::Box(const unsigned int& texture) : m_shader(std::make_unique<Shader>("boxVertex.glsl", "boxFragment.glsl")), m_texture(texture) {
-    mesh.build();
+    mesh.setup();
 
     glGenVertexArrays(1, &m_VAO);
     glBindVertexArray(m_VAO);
@@ -42,7 +42,7 @@ Box::~Box() {
     glDeleteVertexArrays(1, &m_VAO);
 }
 
-void Box::draw(glm::mat4& projectionMatrix, glm::mat4& viewMatrix) const {
+void Box::render(glm::mat4& projectionMatrix, glm::mat4& viewMatrix) const {
     glCullFace(GL_FRONT);
 
     glUseProgram(m_shader->use());
@@ -62,7 +62,7 @@ void Box::draw(glm::mat4& projectionMatrix, glm::mat4& viewMatrix) const {
     glBindVertexArray(0);
 }
 
-void Box::Mesh::build() {
+void Box::Mesh::setup() {
     m_vertexCoords.emplace_back(glm::vec3(0.0f, 0.0f, 0.0f));
     m_vertexCoords.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));
     m_vertexCoords.emplace_back(glm::vec3(1.0f, 1.0f, 0.0f));
