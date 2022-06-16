@@ -15,7 +15,7 @@ class Mesh {
 
     unsigned int m_count = 0u;
 
-    void build();
+    void setup();
 
 public:
     Mesh(const char*);
