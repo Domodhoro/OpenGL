@@ -17,7 +17,7 @@ class Box {
         std::vector<glm::vec3> m_vertexCoords;
         std::vector<glm::vec2> m_textureCoords;
 
-        void build();
+        void setup();
     };
 
     Mesh mesh;
@@ -31,7 +31,7 @@ public:
 
     ~Box();
 
-    void draw(glm::mat4&, glm::mat4&) const;
+    void render(glm::mat4&, glm::mat4&) const;
 };
 
 #endif
