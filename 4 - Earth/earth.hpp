@@ -25,7 +25,7 @@ public:
 
     ~Earth();
 
-    void draw(const glm::mat4&, const glm::mat4&) const;
+    void render(const glm::mat4&, const glm::mat4&) const;
 };
 
 #endif
