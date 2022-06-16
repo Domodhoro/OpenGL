@@ -44,7 +44,7 @@ Earth::~Earth() {
     glDeleteVertexArrays(1, &m_VAO);
 }
 
-void Earth::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) const {
+void Earth::render(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) const {
     glCullFace(GL_FRONT);
 
     glUseProgram(m_shader->use());
