@@ -18,7 +18,7 @@ Triangle::~Triangle() {
     glDeleteVertexArrays(1, &m_VAO);
 }
 
-void Triangle::draw(glm::mat4& projectionMatrix) const {
+void Triangle::render(glm::mat4& projectionMatrix) const {
     glUseProgram(m_shader->use());
     glBindVertexArray(m_VAO);
 
