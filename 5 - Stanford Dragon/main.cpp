@@ -21,9 +21,7 @@ int main() {
         glfwWindowHint(GLFW_RESIZABLE, false);
 
         const int screenWidth = 500, screenHeight = 300;
-
         window = glfwCreateWindow(screenWidth, screenHeight, "Dragon", nullptr, nullptr);
-        
         if (window == nullptr) {
             throw std::runtime_error("Falha ao criar a janela de visualização.");
         }
@@ -32,7 +30,6 @@ int main() {
         glfwSetWindowPos(window, 100, 100);
 
         glewExperimental = true;
-        
         if (glewInit() != GLEW_OK) {
             throw std::runtime_error("Falha ao iniciar GLEW.");
         }
