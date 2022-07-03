@@ -26,9 +26,7 @@ int main() {
         glfwWindowHint(GLFW_RESIZABLE, false);
 
         const int screenWidth = 500, screenHeight = 300;
-
         window = glfwCreateWindow(screenWidth, screenHeight, "Earth", nullptr, nullptr);
-        
         if (window == nullptr) {
             throw std::runtime_error("Falha ao criar a janela de visualização.");
         }
@@ -37,7 +35,6 @@ int main() {
         glfwSetWindowPos(window, 100, 100);
 
         glewExperimental = true;
-        
         if (glewInit() != GLEW_OK) {
             throw std::runtime_error("Falha ao iniciar GLEW.");
         }
@@ -111,7 +108,6 @@ unsigned int loadTexture(const char* texturePath) {
 
     int width = 0, height = 0, channels = 0;
     unsigned char* pixels = stbi_load(texturePath, &width, &height, &channels, 0);
-
     if (pixels == nullptr) {
         throw std::runtime_error("Falha ao abrir arquivo de textura.");
     }
