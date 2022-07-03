@@ -16,8 +16,7 @@ const char* vertexSource =
 "layout(location = 1) in vec3 colorCoords;\n"
 "uniform mat4 model, projection;\n"
 "out highp vec3 Color;\n"
-"void main()\n"
-"{\n"
+"void main() {\n"
 "   gl_Position = projection * model * vec4(vertexCoords, 1.0f);\n"
 "   Color = colorCoords;\n"
 "}\0";
@@ -26,8 +25,7 @@ const char* fragmentSource =
 "#version 300 es\n"
 "out highp vec4 FragColor;\n"
 "in highp vec3 Color;\n"
-"void main()\n"
-"{\n"
+"void main() {\n"
 "   FragColor = vec4(Color, 1.0f);\n"
 "}\0";
 
