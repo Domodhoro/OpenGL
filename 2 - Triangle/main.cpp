@@ -84,12 +84,14 @@ int main() {
         }
 
         glfwTerminate();
+        
         return 0;
     } catch (const exception& e) {
         glfwTerminate();
 
         cerr << e.what();
         cin.get();
+        
         return 1;
     }
 }
