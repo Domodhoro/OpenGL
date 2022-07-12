@@ -38,7 +38,7 @@ int main() {
         glfwWindowHint(GLFW_RESIZABLE, false);
 
         const float screenWidth = 500, screenHeight = 300;
-        GLFWwindow* window = createWindow("Window", screenWidth, screenHeight, 100, 100);
+        GLFWwindow* window = createWindow("Box", screenWidth, screenHeight, 100, 100);
 
         glewExperimental = true;
         if (glewInit() != GLEW_OK) {
