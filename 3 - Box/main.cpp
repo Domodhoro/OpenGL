@@ -32,10 +32,6 @@ int main() {
         if (glfwInit() == GLFW_NOT_INITIALIZED) {
             throw runtime_error("Falha ao iniciar o GLFW.");
         }
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-        glfwWindowHint(GLFW_RESIZABLE, false);
 
         const float screenWidth = 500, screenHeight = 300;
         GLFWwindow* window = createWindow("Box", screenWidth, screenHeight, 100, 100);
