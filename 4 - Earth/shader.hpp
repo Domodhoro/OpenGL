@@ -3,23 +3,25 @@
 
 #include <string>
 
+using std::string;
+
 #include <glm/glm.hpp>
 
-class Shader {
-    unsigned int m_shader = 0u, m_vertex = 0u, m_fragment = 0u, compileVertex(const char*), compileFragment(const char*);
+using glm::mat4;
 
-    std::string read(const char*) const;
-    
+class Shader {
 public:
     Shader(const char*, const char*);
-    Shader(const Shader&) = delete;
-    Shader& operator=(const Shader&) = delete;
-
     ~Shader();
 
     unsigned int& use();
 
-    void setUniformMatrix(const char*, const glm::mat4&) const;
+    void setUniformMatrix(const char*, const mat4&) const;
+
+private:
+    unsigned int m_shader = 0u, m_vertex = 0u, m_fragment = 0u, compileVertex(const char*), compileFragment(const char*);
+
+    string read(const char*) const;
 };
 
 #endif
