@@ -2,6 +2,10 @@
 #include <sstream>
 #include <stdexcept>
 
+using std::runtime_error;
+using std::ifstream;
+using std::stringstream;
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
@@ -17,12 +21,11 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) : m_vertex(comp
 
 	int success = 0;
 	glGetProgramiv(m_shader, GL_LINK_STATUS, &success);
-	
 	if (!success) {
         char infoLog[512];
         glGetProgramInfoLog(m_shader, 512, nullptr, infoLog);
 
-        throw std::runtime_error("Falha ao compilar shader: " + std::string(infoLog));
+        throw runtime_error("Falha ao compilar shader: " + string(infoLog));
 	}
 
 	glDeleteShader(m_vertex);
@@ -42,15 +45,14 @@ unsigned int Shader::compileVertex(const char* vertexPath) {
 
 	glShaderSource(m_vertex, 1, &vertexPath, 0);
 	glCompileShader(m_vertex);
-
 	int success = 0;
 	glGetShaderiv(m_vertex, GL_COMPILE_STATUS, &success);
-	
-	if (!success) {
-        	char infoLog[512];
-        	glGetShaderInfoLog(m_vertex, 512, nullptr, infoLog);
 
-        throw std::runtime_error("Falha ao compilar vertex: " + std::string(infoLog));
+	if (!success) {
+        char infoLog[512];
+        glGetShaderInfoLog(m_vertex, 512, nullptr, infoLog);
+
+        throw runtime_error("Falha ao compilar vertex: " + string(infoLog));
 	}
 
 	return m_vertex;
@@ -64,41 +66,38 @@ unsigned int Shader::compileFragment(const char* fragmentPath) {
 
 	int success = 0;
 	glGetShaderiv(m_fragment, GL_COMPILE_STATUS, &success);
-	
 	if (!success) {
-     		char infoLog[512];
-        	glGetShaderInfoLog(m_fragment, 512, nullptr, infoLog);
+        char infoLog[512];
+        glGetShaderInfoLog(m_fragment, 512, nullptr, infoLog);
 
-        	throw std::runtime_error("Falha ao compilar fragment: " + std::string(infoLog));
+        throw runtime_error("Falha ao compilar fragment: " + string(infoLog));
 	}
 
 	return m_fragment;
 }
 
-void Shader::setUniformMatrix(const char* ID, const glm::mat4& matrix) const {
+void Shader::setUniformMatrix(const char* ID, const mat4& matrix) const {
     glUniformMatrix4fv(glGetUniformLocation(m_shader, ID), 1, GL_FALSE, value_ptr(matrix));
 }
 
-void Shader::setUniformVec3f(const char* ID, const glm::vec3& vec) const {
-    glUniform3fv(glGetUniformLocation(m_shader, ID), 1, glm::value_ptr(vec));
+void Shader::setUniformVec3f(const char* ID, const vec3& vec) const {
+    glUniform3fv(glGetUniformLocation(m_shader, ID), 1, value_ptr(vec));
 }
 
 void Shader::setUniformFloat(const char* ID, const float& value) const {
     glUniform1f(glGetUniformLocation(m_shader, ID), value);
 }
 
-std::string Shader::read(const char* filePath) const {
-    std::ifstream file;
-    std::stringstream code;
+string Shader::read(const char* filePath) const {
+    ifstream file;
+    stringstream code;
 
     file.open(filePath);
-
     if (!file.is_open()) {
-        throw std::runtime_error("Falha ao abrir arquivo GLSL.");
+        throw runtime_error("Falha ao abrir arquivo GLSL.");
     }
 
     code << file.rdbuf();
-
     file.close();
 
     return code.str();
